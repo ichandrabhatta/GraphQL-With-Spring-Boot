@@ -1,11 +1,11 @@
 package com.example.resolver;
 
-import com.coxautodev.graphql.tools.GraphQLResolver;
 import com.example.entity.Subject;
 import com.example.enums.SubjectNameFilter;
 import com.example.enums.SubjectNameFilterList;
 import com.example.response.StudentResponse;
 import com.example.response.SubjectResponse;
+import graphql.kickstart.tools.GraphQLResolver;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
