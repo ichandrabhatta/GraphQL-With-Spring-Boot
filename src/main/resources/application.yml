@@ -1,0 +1,78 @@
+server:
+  port: 8080
+
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate.enable_lazy_load_no_trans: true
+
+
+
+graphql:
+  servlet:
+    mapping: /graphql/*
+    enabled: true
+    corsEnabled: true
+    subscriptions:
+      websocket:
+        path: /subscriptions
+
+graphiql:
+  mapping: /graphiql
+  enabled: true
+  pageTitle: GraphiQL
+
+graphql.playground:
+  mapping: /playground
+  endpoint: /graphql
+  subscriptionsEndpoint: /subscriptions
+  staticFolder.basePath: my-playground-resources-folder
+  enabled: true
+  pageTitle: Playground
+  cdn:
+    enabled: false
+    version: latest
+  settings:
+    editor.cursorShape: line
+    editor.fontFamily: "'Source Code Pro', 'Consolas', 'Inconsolata', 'Droid Sans Mono', 'Monaco', monospace"
+    editor.fontSize: 14
+    editor.reuseHeaders: true
+    editor.theme: dark
+    general.betaUpdates: false
+    prettier.printWidth: 80
+    prettier.tabWidth: 2
+    prettier.useTabs: false
+    request.credentials: omit
+    schema.polling.enable: true
+    schema.polling.endpointFilter: "*localhost*"
+    schema.polling.interval: 2000
+    schema.disableComments: true
+    tracing.hideTracingResponse: true
+  headers:
+    headerFor: AllTabs
+
+altair:
+  mapping: /altair
+  endpoint:
+    graphql: /graphql
+    subscriptions: /subscriptions
+  subscriptions:
+    timeout: 30
+    reconnect: false
+  enabled: true
+  pageTitle: Altair
+
+---
+spring:
+  profiles: postgres
+  datasource:
+    url: jdbc:postgresql://postgres:5432/testdb
+    username: dockeruser
+    password: test
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          lob.non_contextual_creation: true # https://hibernate.atlassian.net/browse/HHH-12368
