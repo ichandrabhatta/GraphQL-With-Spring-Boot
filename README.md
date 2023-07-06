@@ -65,6 +65,39 @@ marksObtained
 }
 ```
 
+Query with variables:
+
+```
+query student($id: Int, $subjectName: SubjectNameFilter  ) {
+  student(id: $id) {
+    firstName
+    lastName
+    email
+    city
+    fullName
+    learningSubjectsByList(subjectNameFilterList: {filterList: ["Math", "Physics"]}) {
+      id
+      subjectName
+      marksObtained
+    }
+    learningSubjects(subjectNameFilter: $subjectName) {
+      id
+      subjectName
+      marksObtained
+    }
+  }
+}
+
+```
+
+variable definition for the above:
+
+```
+{"id" : 2,
+ "subjectName": "All"}
+
+```
+
 Mutation:
 
 ```
