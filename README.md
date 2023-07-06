@@ -38,3 +38,60 @@ query{
 
 }
 ```
+
+Query for filterList:
+
+```
+query{
+
+student( id : 1) {
+firstName
+lastName
+email
+city
+fullName
+learningSubjectsByList(subjectNameFilterList: {filterList : ["Math", "Physics" ]}) {
+id
+subjectName
+marksObtained
+}
+learningSubjects(subjectNameFilter: All) {
+id
+subjectName
+marksObtained
+}
+}
+
+}
+```
+
+Mutation:
+
+```
+mutation{
+  createStudent(createStudentRequest: {
+    firstName: "Taylor"
+    lastName: "Swift"
+    city: "San Diego"
+    email: "tswift@test.com"
+    street: "Elm"
+    subjectsLearning: [
+      {subjectName: "SQL"
+      marksObtained: 80},
+      {subjectName: "Java"
+      marksObtained: 80},
+    ]
+  }) 
+  {id
+  firstName
+  lastName
+  learningSubjects(subjectNameFilter: All) {
+    id
+    subjectName
+    marksObtained
+  }}
+}
+```
+
+
+

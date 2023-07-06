@@ -4,8 +4,10 @@ server:
 spring:
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: update       # enables table creation automatically.
     properties:
-      hibernate.enable_lazy_load_no_trans: true
+      hibernate.enable_lazy_load_no_trans: true  # sets lazy loading to false.
 
 
 
