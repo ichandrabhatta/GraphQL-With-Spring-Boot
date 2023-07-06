@@ -19,10 +19,15 @@ type SubjectResponse{
 }
 
 enum SubjectNameFilter {
+    All,
     Math,
     Biology,
     Physics,
     Java
+}
+
+input SubjectNameFilterList {
+    filterList: [String]
 }
 type StudentResponse {
     id : Int
@@ -32,5 +37,6 @@ type StudentResponse {
     street: String
     city: String
     learningSubjects(subjectNameFilter: SubjectNameFilter): [SubjectResponse]
+    learningSubjectsByList(subjectNameFilterList: SubjectNameFilterList): [SubjectResponse]
     fullName: String
 }
